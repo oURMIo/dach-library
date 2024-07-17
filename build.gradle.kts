@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.0.0"
+    checkstyle
     `maven-publish`
     signing
     id("org.jetbrains.dokka") version "1.9.20"
@@ -16,6 +17,10 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+
+    checkstyle("com.puppycrawl.tools:checkstyle:${checkstyle.toolVersion}")
+    checkstyle("${project.group}:${project.artifacts}:${project.version}")
+
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.3")
 }
@@ -91,4 +96,17 @@ tasks.withType<Jar> {
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.isIncremental = true
+}
+
+checkstyle {
+    toolVersion = "10.12.4"
+    configFile = file(".src/main/resources/suppressions.xml")
+}
+
+tasks.withType<Checkstyle>().configureEach {
+    minHeapSize = "200m"
+    maxHeapSize = "1g"
+    reports {
+        sarif.required = true
+    }
 }

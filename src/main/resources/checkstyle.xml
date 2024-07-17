@@ -1,0 +1,3 @@
+<module name="SuppressionFilter">
+  <property name="file" value=".src/main/resources/suppressions.xml"/>
+</module>
