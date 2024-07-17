@@ -6,6 +6,7 @@ plugins {
     signing
     id("org.jetbrains.dokka") version "1.9.20"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
+    id("com.github.ben-manes.versions") version "0.51.0"
 }
 
 group = "com.dchistyakov"
@@ -20,7 +21,6 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     checkstyle("com.puppycrawl.tools:checkstyle:${checkstyle.toolVersion}")
-    checkstyle("${project.group}:${project.artifacts}:${project.version}")
 
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.3")
