@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.0.0"
     checkstyle
     `maven-publish`
+    id("com.gradle.plugin-publish") version "1.2.1"
     signing
     id("org.jetbrains.dokka") version "1.9.20"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
@@ -38,7 +39,7 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenKotlin") {
+        create<MavenPublication>("gradlePlugin") {
             from(components["kotlin"])
 
             pom {
@@ -86,7 +87,7 @@ publishing {
 }
 
 signing {
-    sign(publishing.publications["mavenKotlin"])
+    sign(publishing.publications["gradlePlugin"])
 }
 
 tasks.withType<Jar> {
@@ -108,5 +109,16 @@ tasks.withType<Checkstyle>().configureEach {
     maxHeapSize = "1g"
     reports {
         sarif.required = true
+    }
+}
+
+gradlePlugin {
+    plugins {
+        create("dachLibraryPlugin") {
+            id = "com.github.ourmio.dach-library"
+            displayName = "Dach Library Plugin"
+            description = "A personal library plugin."
+            implementationClass = "com.github.ourmio.DachLibraryPlugin"
+        }
     }
 }
