@@ -1,10 +1,8 @@
 plugins {
     kotlin("jvm") version "2.0.0"
-    checkstyle
     `maven-publish`
     signing
-    id("org.jetbrains.dokka") version "1.9.20"
-    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
+    id("io.codearte.nexus-staging") version "0.30.0"
 }
 
 group = "com.dchistyakov"
@@ -17,9 +15,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-
-    checkstyle("com.puppycrawl.tools:checkstyle:${checkstyle.toolVersion}")
-    checkstyle("${project.group}:${project.artifacts}:${project.version}")
 
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.3")
@@ -38,75 +33,62 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenKotlin") {
-            from(components["kotlin"])
+        create<MavenPublication>("mavenJava") {
+            artifactId = "dach-library"
+            groupId = "com.dchistyakov"
+            version = "0.0.1"
+            from(components["java"])
+            artifact(tasks.getByName("javadocJar"))
+            artifact(tasks.getByName("sourcesJar"))
 
             pom {
-                name.set("${project.group}:${project.name}")
-                description.set("Personal library for my use.")
-                url.set("https://github.com/oURMIo/dach-library/")
-                inceptionYear.set("2024")
+                packaging = "jar"
+                name.set("dach-library")
+                url.set("https://github.com/oURMIo/dach-library")
+                description.set("A personal library plugin.")
 
-                scm {
-                    connection.set("scm:git:git://github.com/oURMIo/dach-library.git")
-                    developerConnection.set("scm:git:git://github.com/oURMIo/dach-library.git")
-                    url.set("https://github.com/oURMIo/dach-library")
-                }
-                developers {
-                    developer {
-                        name.set("Dmitry Chistyakov")
-                        email.set("dimach.98.ru@gmail.com")
-                        roles.set(listOf("Chief Developer"))
-                    }
-                }
                 licenses {
                     license {
-                        name.set("MIT License")
+                        name.set("MIT license")
                         url.set("https://www.opensource.org/licenses/mit-license.php")
                     }
                 }
-                ciManagement {
-                    system.set("Github Actions")
-                    url.set("https://github.com/oURMIo/dach-library/actions")
+
+                scm {
+                    connection.set("scm:https://github.com/oURMIo/dach-library.git")
+                    developerConnection.set("scm:git@github.com:oURMIo/dach-library.git")
+                    url.set("https://github.com/oURMIo/dach-library")
+                }
+
+                developers {
+                    developer {
+                        id.set("ChiefDeveloper")
+                        name.set("Dmitry Chistyakov")
+                        email.set("dimach.98.ru@gmail.com")
+                    }
                 }
             }
         }
     }
-
     repositories {
         maven {
-            name = "ossrh"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-        }
-        maven {
-            name = "ossrhSnapshots"
-            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots")
+            val releasesUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotsUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsUrl else releasesUrl
+            credentials {
+                username = project.properties["dimach.98.ru@gmail.com"].toString()
+                password = project.properties["9\$Ey?2*mC%cDL#}sUG"].toString()
+            }
         }
     }
 }
 
 signing {
-    sign(publishing.publications["mavenKotlin"])
+    sign(publishing.publications["mavenJava"])
 }
 
-tasks.withType<Jar> {
-    archiveClassifier.set("javadoc")
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    options.isIncremental = true
-}
-
-checkstyle {
-    toolVersion = "10.12.4"
-    configFile = file(".src/main/resources/suppressions.xml")
-}
-
-tasks.withType<Checkstyle>().configureEach {
-    minHeapSize = "200m"
-    maxHeapSize = "1g"
-    reports {
-        sarif.required = true
-    }
+nexusStaging {
+    serverUrl = "https://s01.oss.sonatype.org/service/local/"
+    username = project.properties["dimach.98.ru@gmail.com"].toString()
+    password = project.properties["9\$Ey?2*mC%cDL#}sUG"].toString()
 }
