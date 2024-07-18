@@ -13,13 +13,7 @@ utilities and tools to simplify development and improve application performance.
 
 ## Installation
 
-To include dach-library in your project, add the following dependency to your `build.gradle.kts` file:
-
-```kotlin
-dependencies {
-    implementation("TODO")
-}
-```
+TODO
 
 ## Usage
 
