@@ -256,6 +256,7 @@
                 <arg>--pinentry-mode</arg>
                 <arg>loopback</arg>
               </gpgArguments>
+              <defaultKeyring>true</defaultKeyring>
             </configuration>
             <executions>
               <execution>
