@@ -1,3 +1,5 @@
+architect:
+  - ourmio
 assets:
   settings.xml: ourmio/secrets#assets/settings.xml
   secring.gpg: ourmio/secrets#assets/secring.gpg
