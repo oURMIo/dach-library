@@ -50,7 +50,7 @@
     <kotlin.code.style>official</kotlin.code.style>
     <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
 
-    <checkstyle.version>3.3.1</checkstyle.version>
+    <checkstyle.version>3.4.0</checkstyle.version>
     <jacoco.version>0.8.12</jacoco.version>
     <suppressions.path>./src/main/resources/suppressions.xml</suppressions.path>
   </properties>
