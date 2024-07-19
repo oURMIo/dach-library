@@ -27,7 +27,7 @@
   </developers>
 
   <issueManagement>
-    <system>GitHub</system>
+    <system>GitHub Issues</system>
     <url>https://github.com/oURMIo/dach-library/issues</url>
   </issueManagement>
 
@@ -52,14 +52,8 @@
 
     <checkstyle.version>3.3.1</checkstyle.version>
     <jacoco.version>0.8.11</jacoco.version>
+    <suppressions.path>./src/main/resources/suppressions.xml</suppressions.path>
   </properties>
-
-  <!--  <repositories>
-      <repository>
-        <id>mavenCentral</id>
-        <url>https://repo1.maven.org/maven2/</url>
-      </repository>
-    </repositories>-->
 
   <dependencies>
     <dependency>
@@ -94,7 +88,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
+        <version>3.3.1</version>
       </plugin>
 
       <plugin>
@@ -115,8 +109,8 @@
               <goal>check</goal>
             </goals>
             <configuration>
-              <suppressionsFileExpression>suppressions.xml</suppressionsFileExpression>
-              <suppressionsLocation>suppressions.xml</suppressionsLocation>
+              <suppressionsFileExpression>${suppressions.path}</suppressionsFileExpression>
+              <suppressionsLocation>${suppressions.path}</suppressionsLocation>
             </configuration>
           </execution>
         </executions>
@@ -185,10 +179,36 @@
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.3</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!--      <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.22.2</version>
+            </plugin>-->
+<!--      <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.22.2</version>
       </plugin>
@@ -199,7 +219,7 @@
         <configuration>
           <mainClass>MainKt</mainClass>
         </configuration>
-      </plugin>
+      </plugin>-->
     </plugins>
   </build>
 
@@ -226,32 +246,6 @@
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>3.2.5</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.6.3</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>3.0.1</version>
             <configuration>
@@ -270,7 +264,7 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
+<!--          <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
             <version>1.6.13</version>
@@ -280,7 +274,7 @@
               <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
-          </plugin>
+          </plugin>-->
         </plugins>
       </build>
     </profile>
