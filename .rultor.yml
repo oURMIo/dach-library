@@ -1,9 +1,9 @@
 architect:
-  - oURMIo
+  - ourmio
 assets:
-  settings.xml: oURMIo/secrets#assets/settings.xml
-  secring.gpg: oURMIo/secrets#assets/secring.gpg
-  pubring.gpg: oURMIo/secrets#assets/pubring.gpg
+  settings.xml: ourmio/secrets#assets/settings.xml
+  secring.gpg: ourmio/secrets#assets/secring.gpg
+  pubring.gpg: ourmio/secrets#assets/pubring.gpg
 docker:
   image: l3r8y/rultor-image:1.0.3
 release:

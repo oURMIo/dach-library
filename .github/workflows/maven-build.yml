@@ -1,12 +1,10 @@
-name: codecov
+name: maven-build
 on:
-  push:
-    branches: [ "*" ]
   pull_request:
     branches: [ "*" ]
 
 jobs:
-  codecov:
+  maven:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
@@ -22,10 +20,3 @@ jobs:
             maven-
       - run: |
           mvn clean install
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: ./target/site/jacoco/jacoco.xml
-          fail_ci_if_error: false
