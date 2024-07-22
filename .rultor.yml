@@ -1,3 +1,5 @@
+docker:
+  image: yegor256/rultor-image
 architect:
   - ourmio
 assets:
@@ -11,6 +13,8 @@ release:
     - settings.xml
   script: |-
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
+    update-java-alternatives --set /usr/lib/jvm/java-17
+    export JAVA_HOME=/usr/lib/jvm/java-17
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     mvn clean deploy -Prelease --errors --settings ../settings.xml
