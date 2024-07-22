@@ -35,7 +35,7 @@ fun main() {
 ## Requirements
 
 * Kotlin 2.0.0
-* Java 21 or higher
+* Java 17 or higher
 
 ## License
 
