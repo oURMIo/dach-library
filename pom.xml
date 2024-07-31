@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.dchistyakov</groupId>
+  <groupId>com.ourmio</groupId>
   <artifactId>dach-library</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>${project.groupId}:${project.artifactId}</name>
@@ -41,8 +41,8 @@
   </ciManagement>
 
   <scm>
-    <connection>scmscm:git:git://github.com/ourmio/dach-library.git</connection>
-    <developerConnection>scm:git:ssh://github.com:oURMIo/dach-library.git</developerConnection>
+    <connection>scm:git:git@github.com:/ourmio/dach-library.git</connection>
+    <developerConnection>scm:git:ssh://github.com:ourmio/dach-library.git</developerConnection>
     <url>https://github.com/oURMIo/dach-library</url>
   </scm>
 

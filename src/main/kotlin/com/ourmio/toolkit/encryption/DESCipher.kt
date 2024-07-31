@@ -1,6 +1,6 @@
-package com.dchistyakov.toolkit.encryption
+package com.ourmio.toolkit.encryption
 
-import com.dchistyakov.toolkit.exception.BadSecretKeyException
+import com.ourmio.toolkit.exception.BadSecretKeyException
 import java.util.Base64
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey

@@ -1,8 +1,8 @@
-package com.dchistyakov.toolkit.encryption
+package com.ourmio.toolkit.encryption
 
-import com.dchistyakov.toolkit.exception.BadSecretKeyException
-import com.dchistyakov.toolkit.util.LanguageUtil
-import com.dchistyakov.toolkit.util.RandomUtil
+import com.ourmio.toolkit.exception.BadSecretKeyException
+import com.ourmio.toolkit.util.LanguageUtil
+import com.ourmio.toolkit.util.RandomUtil
 
 /**
  * CaesarCipher implements a simple substitution cipher where each letter in the plaintext

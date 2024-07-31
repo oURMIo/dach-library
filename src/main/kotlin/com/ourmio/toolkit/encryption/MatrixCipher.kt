@@ -1,7 +1,7 @@
-package com.dchistyakov.toolkit.encryption
+package com.ourmio.toolkit.encryption
 
-import com.dchistyakov.toolkit.exception.BadSecretKeyException
-import com.dchistyakov.toolkit.util.RandomUtil
+import com.ourmio.toolkit.exception.BadSecretKeyException
+import com.ourmio.toolkit.util.RandomUtil
 
 /**
  * MatrixCipher implements a cipher algorithm using a matrix transposition technique.

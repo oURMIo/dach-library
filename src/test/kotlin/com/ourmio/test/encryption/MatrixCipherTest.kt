@@ -1,15 +1,14 @@
-package com.dchistyakov.test.encryption
+package com.ourmio.test.encryption
 
-import com.dchistyakov.toolkit.encryption.PairCipher
-import com.dchistyakov.toolkit.util.RandomUtil
-import java.util.Locale
+import com.ourmio.toolkit.encryption.MatrixCipher
+import com.ourmio.toolkit.util.RandomUtil
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class PairCipherTest {
+class MatrixCipherTest {
 
     @ParameterizedTest(name = "Test encryption and decryption with key size {1}")
     @CsvSource(
@@ -19,30 +18,28 @@ class PairCipherTest {
     )
     fun testEncryptionDecryptionWithVariousKeySizes(text: String, keySize: Int) {
         val securityKey = RandomUtil.generateStr(keySize)
-        val pairCipher = PairCipher(key = securityKey)
-        assertEquals(securityKey, pairCipher.getKey())
+        val matrixCipher = MatrixCipher(key = securityKey)
+        assertEquals(securityKey, matrixCipher.getKey())
 
-        val encryptText = pairCipher.encrypt(data = text)
+        val encryptText = matrixCipher.encrypt(data = text)
         assertNotEquals(text, encryptText, "Encrypted text should not match the original text")
 
-        val decryptText = pairCipher.decrypt(data = encryptText)
+        val decryptText = matrixCipher.decrypt(data = encryptText)
         assertNotEquals(encryptText, decryptText, "Decrypted text should not match the encrypted text")
-
-        val normalizedText = text.replace(" ", "").uppercase(Locale.getDefault())
-        assertEquals(normalizedText, decryptText, "Decrypted normalized text should match the original text")
+        assertEquals(text, decryptText, "Decrypted text should match the original text")
     }
 
     @Test
     fun testEmptyStringEncryptionDecryption() {
         val text = ""
-        val securityKey = PairCipher.generateKey()
-        val pairCipher = PairCipher(key = securityKey)
-        assertEquals(securityKey, pairCipher.getKey())
+        val securityKey = MatrixCipher.generateKey()
+        val matrixCipher = MatrixCipher(key = securityKey)
+        assertEquals(securityKey, matrixCipher.getKey())
 
-        val encryptText = pairCipher.encrypt(data = text)
+        val encryptText = matrixCipher.encrypt(data = text)
         assertEquals(text, encryptText, "Encrypted empty text should be empty")
 
-        val decryptText = pairCipher.decrypt(data = encryptText)
+        val decryptText = matrixCipher.decrypt(data = encryptText)
         assertEquals(text, decryptText, "Decrypted empty text should be empty")
     }
 
@@ -50,16 +47,14 @@ class PairCipherTest {
     fun testLargeKeyEncryptionDecryption() {
         val text = "Welcome to my world"
         val securityKey = RandomUtil.generateStr(text.length * 10)
-        val pairCipher = PairCipher(key = securityKey)
-        assertEquals(securityKey, pairCipher.getKey())
+        val matrixCipher = MatrixCipher(key = securityKey)
+        assertEquals(securityKey, matrixCipher.getKey())
 
-        val encryptText = pairCipher.encrypt(data = text)
+        val encryptText = matrixCipher.encrypt(data = text)
         assertNotEquals(text, encryptText, "Encrypted text should not match the original text")
 
-        val decryptText = pairCipher.decrypt(data = encryptText)
+        val decryptText = matrixCipher.decrypt(data = encryptText)
         assertNotEquals(encryptText, decryptText, "Decrypted text should not match the encrypted text")
-
-        val normalizedText = text.replace(" ", "").uppercase(Locale.getDefault())
-        assertEquals(normalizedText, decryptText, "Decrypted normalized text should match the original text")
+        assertEquals(text, decryptText, "Decrypted text should match the original text")
     }
 }

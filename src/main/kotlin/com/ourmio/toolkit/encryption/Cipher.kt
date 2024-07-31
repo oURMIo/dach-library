@@ -1,4 +1,4 @@
-package com.dchistyakov.toolkit.encryption
+package com.ourmio.toolkit.encryption
 
 /**
  * The Cipher interface defines operations for encryption and decryption algorithms.

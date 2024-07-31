@@ -1,7 +1,7 @@
-package com.dchistyakov.toolkit.encryption
+package com.ourmio.toolkit.encryption
 
-import com.dchistyakov.toolkit.exception.BadSecretKeyException
-import com.dchistyakov.toolkit.util.RandomUtil
+import com.ourmio.toolkit.exception.BadSecretKeyException
+import com.ourmio.toolkit.util.RandomUtil
 
 /**
  * VernamCipher implements a symmetric encryption algorithm using the Vernam cipher technique.
