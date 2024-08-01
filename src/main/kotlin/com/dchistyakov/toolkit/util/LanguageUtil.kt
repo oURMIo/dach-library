@@ -1,4 +1,4 @@
-package com.ourmio.toolkit.util
+package com.dchistyakov.toolkit.util
 
 // TODO Figure out how to work with different languages
 object LanguageUtil {

@@ -1,4 +1,4 @@
-package com.ourmio.toolkit.exception
+package com.dchistyakov.toolkit.exception
 
 class BadSecretKeyException(
     message: String = "Received invalid secret key",

@@ -1,6 +1,6 @@
-package com.ourmio.test.encryption
+package com.dchistyakov.test.encryption
 
-import com.ourmio.toolkit.encryption.DESCipher
+import com.dchistyakov.toolkit.encryption.DESCipher
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import org.junit.jupiter.api.Test

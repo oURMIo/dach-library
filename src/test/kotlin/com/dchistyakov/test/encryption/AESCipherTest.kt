@@ -1,6 +1,6 @@
-package com.ourmio.test.encryption
+package com.dchistyakov.test.encryption
 
-import com.ourmio.toolkit.encryption.AESCipher
+import com.dchistyakov.toolkit.encryption.AESCipher
 import javax.crypto.SecretKey
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals

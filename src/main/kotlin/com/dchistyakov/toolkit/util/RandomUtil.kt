@@ -1,4 +1,4 @@
-package com.ourmio.toolkit.util
+package com.dchistyakov.toolkit.util
 
 import kotlin.random.Random
 
