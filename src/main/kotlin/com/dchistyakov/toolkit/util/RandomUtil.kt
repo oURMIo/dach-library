@@ -1,11 +1,11 @@
 package com.dchistyakov.toolkit.util
 
-import kotlin.random.Random
+import java.security.SecureRandom
 
 object RandomUtil {
-    fun generateInt() = Random.nextInt(1, Int.MAX_VALUE % 100)
+    fun generateInt() = SecureRandom().nextInt(1, Int.MAX_VALUE % 100)
 
-    fun generateInt(size: Int) = Random.nextInt(1, size)
+    fun generateInt(size: Int) = SecureRandom().nextInt(1, size)
 
     fun generateStr(): String {
         return (0..<generateInt())
