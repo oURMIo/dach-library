@@ -56,7 +56,7 @@
 
     <min.covered.ratio>0.5</min.covered.ratio>
 
-    <junit.version>5.10.3</junit.version>
+    <junit.version>5.11.3</junit.version>
     <maven.surefire.version>3.5.1</maven.surefire.version>
     <maven.jar.version>3.4.2</maven.jar.version>
     <maven.source.version>3.3.1</maven.source.version>
