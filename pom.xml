@@ -63,7 +63,7 @@
     <maven.javadoc.version>3.11.2</maven.javadoc.version>
     <maven.install.version>3.1.4</maven.install.version>
     <checkstyle.version>3.6.0</checkstyle.version>
-    <jacoco.version>0.8.12</jacoco.version>
+    <jacoco.version>0.8.14</jacoco.version>
     <suppressions.path>./src/main/resources/suppressions.xml</suppressions.path>
   </properties>
 
